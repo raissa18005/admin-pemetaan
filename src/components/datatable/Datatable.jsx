@@ -63,7 +63,7 @@ const Datatable = ({ rows, columns, handleDelete }) => {
         {
             field: "action",
             headerName: "Action",
-            minWidth: 160,
+            minWidth: 100,
             flex: 1,
             renderCell: (params) => {
                 return (

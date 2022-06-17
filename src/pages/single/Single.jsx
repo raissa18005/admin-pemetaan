@@ -4,6 +4,7 @@ import Navbar from "../../components/navbar/Navbar";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Table from "../../components/table/Table";
 import { pathName, setDataPage } from "../../utils/naming";
+import EditCulture from "../editCulture/EditCulture";
 import EditProvince from "../editProvince/EditProvince";
 import EditUser from "../editUser/EditUser";
 import "./single.scss";
@@ -19,7 +20,7 @@ const Single = () => {
                 </div>
                 <div className="mid">
                     {setDataPage(
-                        <EditProvince />,
+                        <EditCulture />,
                         <EditProvince />,
                         <EditUser />
                     )}

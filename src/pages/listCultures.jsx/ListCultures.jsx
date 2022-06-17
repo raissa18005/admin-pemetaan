@@ -42,46 +42,55 @@ const ListCultures = () => {
         {
             field: "year",
             headerName: "Tahun",
-            minWidth: 50,
+            minWidth: 60,
             flex: 1,
             renderCell: (params) => {
                 return params.row.year || "-";
             },
         },
         {
-            field: "reg_num",
-            headerName: "No. Regist",
-            minWidth: 100,
+            field: "desc",
+            headerName: "Deskripsi",
+            minWidth: 150,
             flex: 1,
-
             renderCell: (params) => {
-                return params.row.reg_num || "-";
+                return params.row.desc || "-";
             },
         },
-        {
-            field: "imgs",
-            headerName: "Foto",
-            minWidth: 50,
-            flex: 1,
+        // {
+        //     field: "reg_num",
+        //     headerName: "No. Regist",
+        //     minWidth: 100,
+        //     flex: 1,
 
-            renderCell: (params) => {
-                return params.row.imgs.length > 0
-                    ? params.row.imgs.length
-                    : "-";
-            },
-        },
-        {
-            field: "videos",
-            headerName: "Video",
-            minWidth: 50,
-            flex: 1,
+        //     renderCell: (params) => {
+        //         return params.row.reg_num || "-";
+        //     },
+        // },
+        // {
+        //     field: "imgs",
+        //     headerName: "Foto",
+        //     minWidth: 50,
+        //     flex: 1,
 
-            renderCell: (params) => {
-                return params.row.videos.length > 0
-                    ? params.row.videos.length
-                    : "-";
-            },
-        },
+        //     renderCell: (params) => {
+        //         return params.row.imgs.length > 0
+        //             ? params.row.imgs.length
+        //             : "-";
+        //     },
+        // },
+        // {
+        //     field: "videos",
+        //     headerName: "Video",
+        //     minWidth: 50,
+        //     flex: 1,
+
+        //     renderCell: (params) => {
+        //         return params.row.videos.length > 0
+        //             ? params.row.videos.length
+        //             : "-";
+        //     },
+        // },
     ];
 
     return (

@@ -1,36 +1,25 @@
 import React from "react";
-import "./selectfield.scss";
+import "./fieldselected.scss";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import { useField } from "formik";
 
-const SelectField = ({ options, label, ...props }) => {
-    const [field, meta, helpers] = useField(props.name);
-
-    const { value } = meta;
-    const { setValue } = helpers;
-
-    console.log(value);
-
+const FieldSelected = ({ options, value, setValue, label }) => {
     return (
         <FormControl
-            size="medium"
+            size="small"
             sx={{ minWidth: 150 }}
-            className="selectField"
+            className="fieldSelected"
         >
             <label htmlFor="">{label}</label>
             <Select
-                {...field}
                 SelectDisplayProps={{
                     style: { paddingBlock: 5 },
                 }}
                 value={value}
                 displayEmpty
                 onChange={(event) => setValue(event.target.value)}
-                renderValue={
-                    value !== "" ? undefined : () => <>Pilih {label}</>
-                }
+                renderValue={value !== "" ? undefined : () => <>{label}</>}
                 inputProps={{
                     "aria-label": "Without label",
                 }}
@@ -39,7 +28,6 @@ const SelectField = ({ options, label, ...props }) => {
                     icon: "select-icon",
                 }}
             >
-                <MenuItem value="">None</MenuItem>
                 {label === "Provinsi"
                     ? options.map((option) => (
                           <MenuItem value={option._id}>{option.name}</MenuItem>
@@ -54,11 +42,8 @@ const SelectField = ({ options, label, ...props }) => {
                 <MenuItem value={3}>Option 3</MenuItem>
                 <MenuItem value={4}>Option 4</MenuItem> */}
             </Select>
-            {meta.touched && meta.error ? (
-                <div className="error">{meta.error}</div>
-            ) : null}
         </FormControl>
     );
 };
 
-export default SelectField;
+export default FieldSelected;

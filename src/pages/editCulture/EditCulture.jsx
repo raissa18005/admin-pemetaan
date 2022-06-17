@@ -2,7 +2,12 @@ import React, { useEffect, useState } from "react";
 import SelectField from "../../components/fields/selectfield/SelectField";
 import TextArea from "../../components/fields/textarea/TextArea";
 import TextField from "../../components/fields/textfield/TextField";
-import { addCulture, getProvinces } from "../../redux/apiCalls";
+import {
+    addCulture,
+    getCulture,
+    getProvinces,
+    updateCulture,
+} from "../../redux/apiCalls";
 import DriveFolderUploadIcon from "@mui/icons-material/DriveFolderUpload";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import {
@@ -16,32 +21,47 @@ import "react-toastify/dist/ReactToastify.css";
 import CircularProgress from "@mui/material/CircularProgress";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
-import "./addculture.scss";
+import "./editculture.scss";
 import app from "../../firebase";
 import { useDispatch, useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
+import CustomFilter from "../../components/fields/customFilter/CustomFilter";
+import FieldSelected from "../../components/fields/fieldSelected/FieldSelected";
 
-const AddCulture = () => {
-    const [image, setImage] = useState("");
-    const [url, setUrl] = useState("");
-    const [year, setYear] = useState("");
-    const [province, setProvince] = useState("");
-    const [urls, setUrls] = useState([]);
+const EditCulture = () => {
     const [videos, setVideos] = useState([]);
+    const [image, setImage] = useState("");
     const [images, setImages] = useState([]);
+    const [imageUrl, setImageUrl] = useState("");
+    const [imagesUrls, setImagesUrls] = useState([]);
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const [culture, setCulture] = useState({});
+    const location = useLocation();
+    const [province, setProvince] = useState("");
+    const id = location.pathname.split("/")[2];
 
     const dispatch = useDispatch();
-    const { provinces, isFetching } = useSelector((state) => state.provinces);
+    const { provinces } = useSelector((state) => state.provinces);
 
     useEffect(() => {
         getProvinces(dispatch);
-    }, []);
+        getCulture(id, setCulture);
+        setImage("");
+        setImages([]);
+    }, [isSubmitting === false]);
+
+    useEffect(() => {
+        setProvince(culture.province);
+        setVideos(culture.videos);
+        setImageUrl(culture.img);
+        setImagesUrls(culture.imgs);
+    }, [culture.province, culture.videos, culture.img, culture.imgs]);
+
+    console.log(imagesUrls);
 
     const handleVideos = (e) => {
         setVideos(e.target.value.split(","));
     };
-
-    console.log(videos);
 
     const handleUpload = () => {
         return new Promise((resolve, reject) => {
@@ -149,7 +169,7 @@ const AddCulture = () => {
                 //     })
                 //     .catch((err) => console.log(err));
             } else {
-                resolve();
+                resolve([]);
             }
         });
     };
@@ -169,29 +189,35 @@ const AddCulture = () => {
     const handleSubmit = async (values) => {
         const uri = await handleUpload();
         const uris = await handleUploads();
-        const culture = {
+        console.log("uris: ", uris);
+        const input = {
             ...values,
-            img: uri,
-            imgs: uris,
+            img: imageUrl ? imageUrl : uri,
+            imgs:
+                uris?.length < 1
+                    ? imagesUrls
+                    : [...imagesUrls, ...uris].filter(Boolean),
             videos: videos.filter(Boolean),
         };
-        console.log(culture);
-        addCulture(culture, toast, setIsSubmitting);
+        console.log(input);
+
+        updateCulture(id, input, setIsSubmitting, toast);
     };
 
+    console.log(culture.province);
+
     return (
-        <div className="addCulture">
+        <div className="editCulture">
             <Formik
                 initialValues={{
-                    name: "",
-                    year: null,
-                    reg_num: "",
-                    desc: "",
-                    province: "",
+                    name: culture.name,
+                    year: culture.year,
+                    reg_num: culture.reg_num,
+                    desc: culture.desc,
                 }}
+                enableReinitialize
                 validationSchema={Yup.object({
                     name: Yup.string().required("Harus diisi"),
-                    province: Yup.string().required("Harus diisi"),
                 })}
                 onSubmit={(values) => {
                     setIsSubmitting(true);
@@ -205,11 +231,13 @@ const AddCulture = () => {
                         name="name"
                         placeholder="Permainan Enggrang"
                     />
-                    <SelectField
+                    <FieldSelected
                         options={provinces}
                         label="Provinsi"
-                        name="province"
+                        value={province}
+                        setValue={setProvince}
                     />
+
                     <TextField
                         label="Tahun Registrasi"
                         type="number"
@@ -239,24 +267,36 @@ const AddCulture = () => {
                         <input
                             type="file"
                             id="file1"
-                            onChange={(e) => setImage(e.target.files[0])}
+                            onChange={(e) => {
+                                setImage(e.target.files[0]);
+                                setImageUrl("");
+                            }}
                             style={{
                                 display: "none",
                                 backgroundColor: "red",
                             }}
                         />
-                        {image && (
+                        {image || imageUrl ? (
                             <div className="img-container">
                                 <div className="image">
                                     <img
-                                        src={URL.createObjectURL(image)}
+                                        src={
+                                            imageUrl
+                                                ? imageUrl
+                                                : URL.createObjectURL(image)
+                                        }
                                         alt="img"
                                     />
                                     <CloseRoundedIcon
-                                        onClick={() => setImage("")}
+                                        onClick={() => {
+                                            setImage("");
+                                            setImageUrl("");
+                                        }}
                                     />
                                 </div>
                             </div>
+                        ) : (
+                            ""
                         )}
                     </div>
 
@@ -278,8 +318,24 @@ const AddCulture = () => {
                                 backgroundColor: "red",
                             }}
                         />
-                        {images.length > 0 && (
+                        {(images?.length > 0 || imagesUrls?.length > 0) && (
                             <div className="images-container">
+                                {imagesUrls?.map((image, i) => (
+                                    <div className="images">
+                                        <img src={image} alt="img" />
+                                        <CloseRoundedIcon
+                                            onClick={() =>
+                                                setImagesUrls(
+                                                    imagesUrls.filter(
+                                                        (image) =>
+                                                            image !==
+                                                            imagesUrls[i]
+                                                    )
+                                                )
+                                            }
+                                        />
+                                    </div>
+                                ))}
                                 {images.map((image, i) => (
                                     <div className="images">
                                         <img
@@ -299,6 +355,7 @@ const AddCulture = () => {
                         <input
                             type="text"
                             placeholder="Link1,https://www.youtube.com/embed/WAuN5yVFkfQ,Link3"
+                            value={videos}
                             onChange={handleVideos}
                         />
                         <p>
@@ -307,9 +364,9 @@ const AddCulture = () => {
                         </p>
                     </div>
 
-                    {videos.length > 0 && (
+                    {videos?.length > 0 && (
                         <div className="videos-container">
-                            {videos.filter(Boolean).map((video) => (
+                            {videos?.filter(Boolean).map((video) => (
                                 <iframe
                                     width="320"
                                     height="215"
@@ -321,13 +378,16 @@ const AddCulture = () => {
 
                     <button type="submit" disabled={isSubmitting}>
                         {isSubmitting ? (
-                            <CircularProgress
-                                color="inherit"
-                                size="1.7rem"
-                                thickness={5}
-                            />
+                            <>
+                                <CircularProgress
+                                    color="inherit"
+                                    size="1.7rem"
+                                    thickness={5}
+                                />
+                                Loading ...
+                            </>
                         ) : (
-                            "Tambah"
+                            "Simpan"
                         )}
                     </button>
                 </Form>
@@ -347,4 +407,4 @@ const AddCulture = () => {
     );
 };
 
-export default AddCulture;
+export default EditCulture;
