@@ -22,10 +22,10 @@ const persistConfig = {
 };
 
 const rootReducer = combineReducers({
+    cultures: culturesReducer,
     user: userReducer,
     users: usersReducer,
     provinces: provincesReducer,
-    cultures: culturesReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

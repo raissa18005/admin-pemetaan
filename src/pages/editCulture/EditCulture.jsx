@@ -1,13 +1,7 @@
 import React, { useEffect, useState } from "react";
-import SelectField from "../../components/fields/selectfield/SelectField";
 import TextArea from "../../components/fields/textarea/TextArea";
 import TextField from "../../components/fields/textfield/TextField";
-import {
-    addCulture,
-    getCulture,
-    getProvinces,
-    updateCulture,
-} from "../../redux/apiCalls";
+import { getCulture, getProvinces, updateCulture } from "../../redux/apiCalls";
 import DriveFolderUploadIcon from "@mui/icons-material/DriveFolderUpload";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import {
@@ -25,7 +19,6 @@ import "./editculture.scss";
 import app from "../../firebase";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
-import CustomFilter from "../../components/fields/customFilter/CustomFilter";
 import FieldSelected from "../../components/fields/fieldSelected/FieldSelected";
 
 const EditCulture = () => {
@@ -51,7 +44,7 @@ const EditCulture = () => {
     }, [isSubmitting === false]);
 
     useEffect(() => {
-        setProvince(culture.province);
+        setProvince(culture.province?._id);
         setVideos(culture.videos);
         setImageUrl(culture.img);
         setImagesUrls(culture.imgs);
@@ -189,7 +182,6 @@ const EditCulture = () => {
     const handleSubmit = async (values) => {
         const uri = await handleUpload();
         const uris = await handleUploads();
-        console.log("uris: ", uris);
         const input = {
             ...values,
             img: imageUrl ? imageUrl : uri,
@@ -198,13 +190,10 @@ const EditCulture = () => {
                     ? imagesUrls
                     : [...imagesUrls, ...uris].filter(Boolean),
             videos: videos.filter(Boolean),
+            province: province,
         };
-        console.log(input);
-
-        updateCulture(id, input, setIsSubmitting, toast);
+        updateCulture(id, input, setIsSubmitting, toast, dispatch);
     };
-
-    console.log(culture.province);
 
     return (
         <div className="editCulture">

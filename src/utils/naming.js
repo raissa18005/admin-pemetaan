@@ -28,24 +28,6 @@ export function setDataPage(data1, data2, data3) {
     );
 }
 
-export const years = [
-    {
-        id: 1,
-        label: 2012,
-        value: 2012,
-    },
-    {
-        id: 1,
-        label: 2013,
-        value: 2013,
-    },
-    {
-        id: 2,
-        label: 2019,
-        value: 2019,
-    },
-];
-
 export const tahun = (start, end) => {
     const year = [];
     let i = 1;

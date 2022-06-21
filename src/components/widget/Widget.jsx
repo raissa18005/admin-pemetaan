@@ -1,49 +1,37 @@
 import React from "react";
 import "./widget.scss";
-import ArrowUpwardOutlinedIcon from "@mui/icons-material/ArrowUpwardOutlined";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
-import Inventory2OutlinedIcon from "@mui/icons-material/Inventory2Outlined";
 import LocalShippingOutlinedIcon from "@mui/icons-material/LocalShippingOutlined";
-import LocalFloristOutlinedIcon from "@mui/icons-material/LocalFloristOutlined";
+
+import AddLocationIcon from "@mui/icons-material/AddLocation";
+import PublicIcon from "@mui/icons-material/Public";
 
 const Widget = ({ type, value }) => {
     let data;
 
-    // temp
-    const amount = 100;
-    const diff = 20;
-
     switch (type) {
-        case "user":
+        case "culture":
             data = {
                 title: "BUDAYA",
                 isMoney: false,
                 link: "lihat semua permainan",
-                icon: <PersonOutlineOutlinedIcon className="icon" />,
+                icon: <PublicIcon className="icon" />,
             };
             break;
-        case "order":
+        case "province":
             data = {
                 title: "PROVINSI",
                 isMoney: true,
                 link: "lihat semua provinsi",
-                icon: <Inventory2OutlinedIcon className="icon" />,
+                icon: <AddLocationIcon className="icon" />,
             };
             break;
-        case "products":
+        case "admin":
             data = {
                 title: "ADMIN",
                 isMoney: false,
                 link: "lihat semua admin",
-                icon: <LocalFloristOutlinedIcon className="icon" />,
-            };
-            break;
-        case "delivery":
-            data = {
-                title: "DELIVERIES",
-                isMoney: true,
-                link: "see all deliveries",
-                icon: <LocalShippingOutlinedIcon className="icon" />,
+                icon: <PersonOutlineOutlinedIcon className="icon" />,
             };
             break;
         default:
@@ -58,9 +46,9 @@ const Widget = ({ type, value }) => {
                 <span className="link">{data.link}</span>
             </div>
             <div className="right">
-                <div className="percentage positive">
+                {/* <div className="percentage positive">
                     <ArrowUpwardOutlinedIcon /> {diff}%
-                </div>
+                </div> */}
                 {data.icon}
             </div>
         </div>

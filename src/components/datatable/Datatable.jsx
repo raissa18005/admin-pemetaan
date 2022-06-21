@@ -57,8 +57,6 @@ const Datatable = ({ rows, columns, handleDelete }) => {
         applyFilters();
     }, [inputSearch, province, year, rows]);
 
-    console.log(tahun(2012, 2021));
-
     const actionColumn = [
         {
             field: "action",
@@ -152,7 +150,8 @@ const Datatable = ({ rows, columns, handleDelete }) => {
                 rows={list}
                 columns={columns.concat(actionColumn)}
                 pageSize={9}
-                rowsPerPageOptions={[9]}
+                rowsPerPageOptions={[9, 18, 20, 100]}
+                paginationMode="client"
                 checkboxSelection
             />
             <ConfirmDialog

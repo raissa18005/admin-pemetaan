@@ -151,6 +151,7 @@ export const getCultures = async (dispatch) => {
     try {
         const res = await publicRequest.get("/cultures");
         dispatch(getCulturesSuccess(res.data));
+        console.log(res.data);
     } catch (err) {
         dispatch(getCulturesFailure());
     }
@@ -164,12 +165,18 @@ export const getCulture = async (id, setCulture) => {
     } catch (err) {}
 };
 
-export const updateCulture = async (id, input, setIsSubmitting, toast) => {
+export const updateCulture = async (
+    id,
+    input,
+    setIsSubmitting,
+    toast,
+    dispatch
+) => {
     try {
         // update
         const res = await userRequest.put(`/cultures/${id}`, input);
-        console.log(res.data);
         setIsSubmitting(false);
+        getCultures(dispatch);
         toast.success("Perubahan Berhasil Disimpan");
     } catch (err) {
         setIsSubmitting(false);

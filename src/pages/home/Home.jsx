@@ -19,7 +19,7 @@ const Home = () => {
         getProvinces(dispatch);
         getUsers(dispatch);
         getCultures(dispatch);
-    }, []);
+    }, [dispatch]);
 
     return (
         <div className="home">
@@ -27,9 +27,9 @@ const Home = () => {
             <div className="homeContainer">
                 <Navbar />
                 <div className="widgets">
-                    <Widget type="user" value={cultures.length} />
-                    <Widget type="order" value={provinces.length} />
-                    <Widget type="products" value={users.length} />
+                    <Widget type="culture" value={cultures.length} />
+                    <Widget type="province" value={provinces.length} />
+                    <Widget type="admin" value={users.length} />
                 </div>
                 <div className="charts">
                     <Featured />

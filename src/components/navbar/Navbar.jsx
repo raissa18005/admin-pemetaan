@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 const Navbar = () => {
     return (
         <div className="navbar">
-            <div className="wrapper">
+            {/* <div className="wrapper">
                 <div className="search">
                     <input type="text" placeholder="Search..." />
                     <SearchOutlinedIcon />
@@ -40,7 +40,7 @@ const Navbar = () => {
                         </div>
                     </Link>
                 </div>
-            </div>
+            </div> */}
         </div>
     );
 };
