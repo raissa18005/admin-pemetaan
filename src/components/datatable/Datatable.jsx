@@ -86,8 +86,7 @@ const Datatable = ({ rows, columns, handleDelete }) => {
             },
         },
     ];
-    console.log("list", list);
-    console.log("list", columns);
+
     return (
         <div className="datatable">
             <div className="top">

@@ -10,7 +10,6 @@ import "./style/dark.scss";
 
 function App() {
     const user = useSelector((state) => state.user.currentUser);
-    console.log(user);
 
     return (
         <div className="app">

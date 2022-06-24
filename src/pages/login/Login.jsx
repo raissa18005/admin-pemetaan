@@ -27,7 +27,6 @@ const Login = () => {
     };
 
     const user = useSelector((state) => state.user.currentUser);
-    console.log(user);
     return (
         <div className="login">
             <div className="login-container">

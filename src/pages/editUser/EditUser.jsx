@@ -32,7 +32,7 @@ const EditUser = () => {
     // console.log(formRef.current?.values?.password);
 
     const handleValid = () => {
-        console.log(formRef.current.values);
+        // console.log(formRef.current.values);
         // if (formRef.current.password) {
         // setTes({
         //     username: Yup.string()
@@ -53,8 +53,6 @@ const EditUser = () => {
         // } else {
         // }
     };
-
-    console.log(tes);
 
     // const handleVal = (event: FormEvent) => {
     // console.log("Form::onChange", event);

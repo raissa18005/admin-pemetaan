@@ -63,7 +63,7 @@ export const updateUser = async (id, user, setIsSubmitting, toast) => {
     try {
         // update
         const res = await userRequest.put(`/admins/${id}`, user);
-        console.log(res.data);
+        // console.log(res.data);
         setIsSubmitting(false);
         toast.success("Perubahan Berhasil Disimpan");
     } catch (err) {
@@ -97,7 +97,7 @@ export const getProvinces = async (dispatch) => {
 export const getProvince = async (provinceId, setProvince) => {
     try {
         const res = await publicRequest.get(`/provinces/find/${provinceId}`);
-        console.log(res.data);
+        // console.log(res.data);
         setProvince(res.data);
     } catch (err) {}
 };
@@ -123,7 +123,7 @@ export const updateProvince = async (
     try {
         // update
         const res = await userRequest.put(`/provinces/${provinceId}`, province);
-        console.log(res.data);
+        // console.log(res.data);
         setIsSubmitting(false);
         toast.success("Perubahan Berhasil Disimpan");
     } catch (err) {
@@ -135,12 +135,11 @@ export const updateProvince = async (
 export const addCulture = async (culture, toast, setIsSubmitting) => {
     try {
         const res = await userRequest.post(`/cultures`, culture);
-        console.log(res.data);
-        console.log("SUKSES");
+        // console.log(res.data);
         setIsSubmitting(false);
         toast.success("Permainan Berhasil Dibuat");
     } catch (err) {
-        console.log(err);
+        // console.log(err);
         setIsSubmitting(false);
         toast.error("Permainan Gagal Dibuat");
     }
@@ -151,7 +150,7 @@ export const getCultures = async (dispatch) => {
     try {
         const res = await publicRequest.get("/cultures");
         dispatch(getCulturesSuccess(res.data));
-        console.log(res.data);
+        // console.log(res.data);
     } catch (err) {
         dispatch(getCulturesFailure());
     }
@@ -160,7 +159,7 @@ export const getCultures = async (dispatch) => {
 export const getCulture = async (id, setCulture) => {
     try {
         const res = await publicRequest.get(`/cultures/find/${id}`);
-        console.log(res.data);
+        // console.log(res.data);
         setCulture(res.data);
     } catch (err) {}
 };
@@ -189,7 +188,6 @@ export const deleteCulture = async (id, dispatch, toast) => {
     try {
         const res = await userRequest.delete(`/cultures/${id}`);
         dispatch(deleteCulturesSuccess(id));
-        console.log(id);
         toast.success("Berhasil Menghapus");
     } catch (err) {
         dispatch(deleteCulturesFailure());
@@ -200,8 +198,7 @@ export const deleteCulture = async (id, dispatch, toast) => {
 export const addProvince = async (province, toast, setIsSubmitting) => {
     try {
         const res = await userRequest.post(`/provinces`, province);
-        console.log(res.data);
-        console.log("SUKSES");
+        // console.log(res.data);
         setIsSubmitting(false);
         toast.success("Provinsi Berhasil Dibuat");
     } catch (err) {
@@ -213,8 +210,7 @@ export const addProvince = async (province, toast, setIsSubmitting) => {
 export const addUser = async (input, toast, setIsSubmitting) => {
     try {
         const res = await userRequest.post(`/auth/register`, input);
-        console.log(res.data);
-        console.log("SUKSES");
+        // console.log(res.data);
         setIsSubmitting(false);
         toast.success("User Berhasil Dibuat");
     } catch (err) {

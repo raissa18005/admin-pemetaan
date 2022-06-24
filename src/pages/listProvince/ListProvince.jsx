@@ -17,7 +17,6 @@ const ListProvince = () => {
 
     const handleDelete = (id) => {
         deleteProvince(id, dispatch, toast);
-        console.log(id);
     };
 
     const provinceColumns = [

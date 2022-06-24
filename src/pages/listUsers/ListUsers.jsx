@@ -16,7 +16,6 @@ const ListUsers = () => {
 
     const handleDelete = (id) => {
         deleteUser(id, dispatch, toast);
-        console.log(id);
     };
 
     const provinceColumns = [
