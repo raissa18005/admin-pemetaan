@@ -9,17 +9,6 @@ import { pathName, setDataPage } from "../../utils/naming";
 import ListCultures from "../listCultures.jsx/ListCultures";
 
 const List = () => {
-    // const location = useLocation();
-    // const path = location.pathname.split("/")[1];
-
-    // const page = () => {
-    //     if (path === "provinces") {
-    //         return <ListProvince />;
-    //     } else if (path === "users") {
-    //         return <ListUsers />;
-    //     }
-    // };
-
     return (
         <div className="list">
             <Sidebar />

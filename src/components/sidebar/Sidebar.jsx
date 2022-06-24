@@ -25,7 +25,7 @@ const Sidebar = () => {
         },
         {
             id: 2,
-            title: "Budaya",
+            title: "Permainan Rakyat",
             icon: <PublicIcon className="icon" />,
             path: "/cultures",
         },
@@ -37,7 +37,7 @@ const Sidebar = () => {
         },
         {
             id: 4,
-            title: "Pengguna",
+            title: "Admin",
             icon: <PersonOutlineOutlinedIcon className="icon" />,
             path: "/users",
         },

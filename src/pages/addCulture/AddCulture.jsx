@@ -22,10 +22,10 @@ import { useDispatch, useSelector } from "react-redux";
 
 const AddCulture = () => {
     const [image, setImage] = useState("");
-    const [url, setUrl] = useState("");
-    const [year, setYear] = useState("");
-    const [province, setProvince] = useState("");
-    const [urls, setUrls] = useState([]);
+    // const [url, setUrl] = useState("");
+    // const [year, setYear] = useState("");
+    // const [province, setProvince] = useState("");
+    // const [urls, setUrls] = useState([]);
     const [videos, setVideos] = useState([]);
     const [images, setImages] = useState([]);
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -303,7 +303,8 @@ const AddCulture = () => {
                         />
                         <p>
                             Link berupa link embed ex:
-                            https://www.youtube.com/embed/WAuN5yVFkfQ
+                            https://www.youtube.com/embed/WAuN5yVFkfQ ; Setiap
+                            video dipisahkan dengan koma
                         </p>
                     </div>
 
@@ -321,11 +322,14 @@ const AddCulture = () => {
 
                     <button type="submit" disabled={isSubmitting}>
                         {isSubmitting ? (
-                            <CircularProgress
-                                color="inherit"
-                                size="1.7rem"
-                                thickness={5}
-                            />
+                            <>
+                                <CircularProgress
+                                    color="inherit"
+                                    size="1.7rem"
+                                    thickness={5}
+                                />
+                                Uploading Please Wait ...
+                            </>
                         ) : (
                             "Tambah"
                         )}

@@ -5,7 +5,9 @@ export const culturesSlice = createSlice({
     initialState: {
         cultures: [],
         isFetching: false,
+        isFetchingDelete: false,
         error: false,
+        errorDelete: false,
     },
     reducers: {
         //GET ALL
@@ -23,19 +25,19 @@ export const culturesSlice = createSlice({
         },
         //DELETE
         deleteCulturesStart: (state) => {
-            state.isFetching = true;
-            state.error = false;
+            state.isFetchingDelete = true;
+            state.errorDelete = false;
         },
         deleteCulturesSuccess: (state, action) => {
-            state.isFetching = false;
+            state.isFetchingDelete = false;
             state.cultures.splice(
                 state.cultures.findIndex((item) => item._id === action.payload),
                 1
             );
         },
         deleteCulturesFailure: (state) => {
-            state.isFetching = false;
-            state.error = true;
+            state.isFetchingDelete = false;
+            state.errorDelete = true;
         },
     },
 });

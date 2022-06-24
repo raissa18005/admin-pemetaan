@@ -13,18 +13,43 @@
 
         .charts {
             padding: 5px 20px;
+            margin-bottom: 20px;
         }
 
         .listContainer {
             -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
             box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
-            padding: 20px;
-            margin: 20px;
+            padding: 10px;
+            flex: 4;
 
             .listTitle {
                 font-weight: 500;
                 color: gray;
                 margin-bottom: 15px;
+            }
+
+        }
+
+        .list-wrapper {
+            padding: 10px;
+            display: flex;
+            gap: 20px;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+
+            .list-item {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                color: gray;
+
+                svg {
+                    font-size: 50px;
+                    padding: 20px;
+                    color: #7451f8;
+
+                }
             }
         }
     }

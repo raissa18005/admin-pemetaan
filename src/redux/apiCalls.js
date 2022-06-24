@@ -189,6 +189,7 @@ export const deleteCulture = async (id, dispatch, toast) => {
     try {
         const res = await userRequest.delete(`/cultures/${id}`);
         dispatch(deleteCulturesSuccess(id));
+        console.log(id);
         toast.success("Berhasil Menghapus");
     } catch (err) {
         dispatch(deleteCulturesFailure());
@@ -221,4 +222,11 @@ export const addUser = async (input, toast, setIsSubmitting) => {
         setIsSubmitting(false);
         toast.error("User Gagal Dibuat");
     }
+};
+
+export const getCalculate = async (setCalc) => {
+    try {
+        const res = await publicRequest.get(`/cultures/calculate`);
+        setCalc(res.data);
+    } catch (err) {}
 };

@@ -16,6 +16,7 @@ const Widget = ({ type, value }) => {
                 isMoney: false,
                 link: "lihat semua permainan",
                 icon: <PublicIcon className="icon" />,
+                path: "/cultures",
             };
             break;
         case "province":
@@ -24,6 +25,7 @@ const Widget = ({ type, value }) => {
                 isMoney: true,
                 link: "lihat semua provinsi",
                 icon: <AddLocationIcon className="icon" />,
+                path: "/provinces",
             };
             break;
         case "admin":
@@ -32,6 +34,7 @@ const Widget = ({ type, value }) => {
                 isMoney: false,
                 link: "lihat semua admin",
                 icon: <PersonOutlineOutlinedIcon className="icon" />,
+                path: "/users",
             };
             break;
         default:
@@ -43,7 +46,9 @@ const Widget = ({ type, value }) => {
             <div className="left">
                 <span className="title">{data.title}</span>
                 <span className="counter">{value}</span>
-                <span className="link">{data.link}</span>
+                <span className="link">
+                    <a href={data.path}>{data.link} </a>
+                </span>
             </div>
             <div className="right">
                 {/* <div className="percentage positive">

@@ -126,14 +126,14 @@ const EditUser = () => {
 
                     <TextField
                         label="Password Baru"
-                        type="text"
+                        type="password"
                         name="password"
                         placeholder="Masukkan Password Baru"
                         ref={formRef}
                     />
                     <TextField
                         label="Konfirmasi Password Baru"
-                        type="text"
+                        type="password"
                         name="confirmPassword"
                         placeholder="Konfirmasi Password Baru"
                     />

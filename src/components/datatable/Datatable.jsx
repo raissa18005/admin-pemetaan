@@ -18,6 +18,7 @@ const Datatable = ({ rows, columns, handleDelete }) => {
     const [deleteVal, setDeleteVal] = useState({});
     const [province, setProvince] = useState("");
     const [year, setYear] = useState("");
+    const [pageSize, setPageSize] = useState(9);
 
     const dispatch = useDispatch();
     const { provinces } = useSelector((state) => state.provinces);
@@ -51,7 +52,6 @@ const Datatable = ({ rows, columns, handleDelete }) => {
                 );
             }
 
-            console.log(updatedList);
             setList(updatedList);
         };
         applyFilters();
@@ -86,6 +86,8 @@ const Datatable = ({ rows, columns, handleDelete }) => {
             },
         },
     ];
+    console.log("list", list);
+    console.log("list", columns);
     return (
         <div className="datatable">
             <div className="top">
@@ -149,10 +151,10 @@ const Datatable = ({ rows, columns, handleDelete }) => {
                 getRowId={(row) => row._id}
                 rows={list}
                 columns={columns.concat(actionColumn)}
-                pageSize={9}
-                rowsPerPageOptions={[9, 18, 20, 100]}
-                paginationMode="client"
-                checkboxSelection
+                rowsPerPageOptions={[9, 20, 50, 100]}
+                pageSize={pageSize}
+                onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
+                pagination
             />
             <ConfirmDialog
                 open={openConfirm}

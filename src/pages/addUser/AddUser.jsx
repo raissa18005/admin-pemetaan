@@ -53,13 +53,13 @@ const AddUser = () => {
 
                     <TextField
                         label="Password"
-                        type="text"
+                        type="password"
                         name="password"
                         placeholder="Masukkan Password"
                     />
                     <TextField
                         label="Konfirmasi Password"
-                        type="text"
+                        type="password"
                         name="confirmPassword"
                         placeholder="Konfirmasi Password"
                     />

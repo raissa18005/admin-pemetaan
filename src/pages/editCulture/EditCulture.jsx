@@ -373,7 +373,7 @@ const EditCulture = () => {
                                     size="1.7rem"
                                     thickness={5}
                                 />
-                                Loading ...
+                                Uploading Please Wait ...
                             </>
                         ) : (
                             "Simpan"

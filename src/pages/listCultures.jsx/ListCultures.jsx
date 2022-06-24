@@ -9,6 +9,7 @@ import "./listcultures.scss";
 
 const ListCultures = () => {
     const dispatch = useDispatch();
+
     const { cultures, isFetching } = useSelector((state) => state.cultures);
 
     useEffect(() => {
@@ -16,7 +17,7 @@ const ListCultures = () => {
     }, [dispatch]);
 
     const handleDelete = (id) => {
-        deleteCulture(id, dispatch, toast, cultures);
+        deleteCulture(id, dispatch, toast);
     };
 
     const cultureColumns = [
