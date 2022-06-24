@@ -50,8 +50,6 @@ const EditCulture = () => {
         setImagesUrls(culture.imgs);
     }, [culture.province, culture.videos, culture.img, culture.imgs]);
 
-    console.log(imagesUrls);
-
     const handleVideos = (e) => {
         setVideos(e.target.value.split(","));
     };

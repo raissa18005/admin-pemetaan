@@ -41,8 +41,6 @@ const AddCulture = () => {
         setVideos(e.target.value.split(","));
     };
 
-    console.log(videos);
-
     const handleUpload = () => {
         return new Promise((resolve, reject) => {
             if (image) {
@@ -175,7 +173,6 @@ const AddCulture = () => {
             imgs: uris,
             videos: videos.filter(Boolean),
         };
-        console.log(culture);
         addCulture(culture, toast, setIsSubmitting);
     };
 
