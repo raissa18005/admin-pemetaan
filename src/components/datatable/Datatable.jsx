@@ -10,7 +10,6 @@ import { fieldName, pathName, setDataPage, tahun } from "../../utils/naming";
 import CustomFilter from "../fields/customFilter/CustomFilter";
 import { getProvinces } from "../../redux/apiCalls";
 import { useDispatch, useSelector } from "react-redux";
-import limits from "../../data/limits.json";
 
 const Datatable = ({ rows, columns, handleDelete }) => {
     const [inputSearch, setInputSearch] = useState("");
@@ -68,9 +67,7 @@ const Datatable = ({ rows, columns, handleDelete }) => {
             minWidth: 100,
             flex: 1,
             renderCell: (params) => {
-                return limits.some((e) => e._id === params.row._id) ? (
-                    ""
-                ) : (
+                return (
                     <div className="cellAction">
                         <Link
                             to={`./${params.row._id}`}

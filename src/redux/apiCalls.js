@@ -149,6 +149,7 @@ export const getCultures = async (dispatch) => {
     dispatch(getCulturesStart());
     try {
         const res = await publicRequest.get("/cultures");
+        console.log(res.data);
         dispatch(getCulturesSuccess(res.data));
         // console.log(res.data);
     } catch (err) {

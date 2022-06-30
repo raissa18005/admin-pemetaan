@@ -25,6 +25,7 @@ const Home = () => {
     const { users } = useSelector((state) => state.users);
     const { cultures } = useSelector((state) => state.cultures);
 
+    console.log(cultures);
     useEffect(() => {
         getProvinces(dispatch);
         getUsers(dispatch);

@@ -6,7 +6,7 @@ import Login from "./pages/login/Login";
 import New from "./pages/new/New";
 import Single from "./pages/single/Single";
 import { useSelector } from "react-redux";
-import "./style/dark.scss";
+import "./App.css";
 
 function App() {
     const user = useSelector((state) => state.user.currentUser);
