@@ -3,7 +3,7 @@ export const pathName = () => {
     return (
         {
             provinces: "Provinsi",
-            cultures: "Budaya",
+            cultures: "Permainan",
             users: "Admin",
         }[path] || "Data"
     );

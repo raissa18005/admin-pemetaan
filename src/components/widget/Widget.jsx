@@ -12,7 +12,7 @@ const Widget = ({ type, value }) => {
     switch (type) {
         case "culture":
             data = {
-                title: "BUDAYA",
+                title: "Permainan",
                 isMoney: false,
                 link: "lihat semua permainan",
                 icon: <PublicIcon className="icon" />,

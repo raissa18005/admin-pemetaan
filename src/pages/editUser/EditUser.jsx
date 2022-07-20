@@ -88,7 +88,7 @@ const EditUser = () => {
                               password: Yup.string()
                                   .required("Harus diisi")
                                   .matches(
-                                      /^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,}$/,
+                                      /^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[#?!@$%^&*-])[a-zA-Z0-9#?!@$%^&*-]{8,}$/,
                                       "Password Minimal 8 karakter, Satu huruf besar, Satu huruf kecil, Satu angka dan satu simbol"
                                   ),
                               confirmPassword: Yup.string()
