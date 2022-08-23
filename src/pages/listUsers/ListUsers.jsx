@@ -19,7 +19,7 @@ const ListUsers = () => {
     };
 
     const provinceColumns = [
-        { field: "_id", headerName: "ID", minWidth: 100, flex: 1 },
+        // { field: "_id", headerName: "ID", minWidth: 100, flex: 1 },
         {
             field: "username",
             headerName: "Username",

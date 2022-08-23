@@ -20,17 +20,17 @@ const Featured = ({ calc }) => {
     const pieData = [
         {
             name: "Provinsi Tinggi",
-            value: calc.highProvince,
+            value: calc.highProvinces,
             color: "#82ca9d",
         },
         {
             name: "Provinsi Sedang",
-            value: calc.midProvince,
+            value: calc.midProvinces,
             color: "#FFBB28",
         },
         {
             name: "Provinsi Rendah",
-            value: calc.lowProvince,
+            value: calc.lowProvinces,
             color: "#ff4242",
         },
     ];
@@ -82,14 +82,14 @@ const Featured = ({ calc }) => {
                         <p className="desc">{`Rata-rata : ${calc?.average.toFixed(
                             2
                         )}`}</p>
-                        <p className="desc">{`Standar Deviasi : ${calc?.standarDev.toFixed(
+                        <p className="desc">{`Standar Deviasi : ${calc?.standarDeviasi.toFixed(
                             2
                         )}`}</p>
                         <p className="desc">{`n : ${calc?.n}`}</p>
-                        <p className="desc">{`Rata-rata - : ${calc?.low.toFixed(
+                        <p className="desc">{`Rata-rata - : ${calc?.lowBound.toFixed(
                             2
                         )}`}</p>
-                        <p className="desc">{`Rata-rata + : ${calc?.high.toFixed(
+                        <p className="desc">{`Rata-rata + : ${calc?.highBound.toFixed(
                             2
                         )}`}</p>
                     </div>
